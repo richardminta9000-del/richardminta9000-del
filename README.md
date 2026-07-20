@@ -28,3 +28,6 @@ Here are some ideas to get you started:
 * [ ] Filtrado de microdatos ENEMDU en Python.
 * [ ] Evaluación de impacto y diseño institucional.
 * [ ] Despliegue de Dashboard en Vercel.
+
+
+hola quiero ver si esto se refleja
