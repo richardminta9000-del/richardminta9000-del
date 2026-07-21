@@ -1,116 +1,89 @@
-import indicadores from "../data/indicadores.json";
+'use client';
 
-export default function Home() {
-  const subempleoTotal = (
-    indicadores["Subempleo Tiempo"] +
-    indicadores["Subempleo Ingresos"]
-  ).toFixed(2);
-
-  const desempleoTotal = (
-    indicadores["Desempleo Abierto"] +
-    indicadores["Desempleo Oculto"]
-  ).toFixed(2);
-
+export default function DashboardPage() {
   return (
-    <main className="container">
-      <h1 className="title">
-        Política pública para reducir desempleo y subempleo
-      </h1>
-
-      <p className="subtitle">
-        Provincia de Cotopaxi · ENEMDU 2025 · población de 15 años y más
-      </p>
-
-      <div className="grid">
-        <div className="card">
-          <h3>Población expandida</h3>
-          <p>
-            {indicadores["Poblacion Expandida"].toLocaleString()}
+    <div className="space-y-6">
+      
+      {/* Encabezado del Dashboard */}
+      <div className="bg-indigo-900 text-white p-6 rounded-xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">Política Pública: "Cotopaxi Emprende y Produce"</h1>
+          <p className="text-indigo-200 text-sm mt-1">
+            Diagnóstico de Mercado Laboral | Microdatos ENEMDU 2025 (INEC)
           </p>
         </div>
+        <span className="bg-indigo-800 border border-indigo-600 text-xs text-indigo-100 px-3 py-1.5 rounded-full font-semibold">
+          PET (≥ 15 años): 399,904 hab.
+        </span>
+      </div>
 
-        <div className="card">
-          <h3>Empleo adecuado</h3>
-          <p>{indicadores["Empleo Adecuado"]}%</p>
+      {/* 1. Tarjetas de Indicadores Principales */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-indigo-500">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Población Expandida (PET)</p>
+          <p className="text-2xl font-black text-slate-800 mt-1">399,904</p>
+          <p className="text-xs text-slate-500 mt-1">Cotopaxi ≥ 15 años</p>
         </div>
 
-        <div className="card">
-          <h3>Subempleo total</h3>
-          <p>{subempleoTotal}%</p>
+        <div className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-500">
+          <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Empleo Adecuado (s/ PEA)</p>
+          <p className="text-2xl font-black text-emerald-600 mt-1">25.67%</p>
+          <p className="text-xs text-slate-500 mt-1">21.92% sobre la PET</p>
         </div>
 
-        <div className="card">
-          <h3>Desempleo total</h3>
-          <p>{desempleoTotal}%</p>
+        <div className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-500">
+          <p className="text-xs font-bold text-amber-600 uppercase tracking-wider">Tasa de Subempleo (s/ PEA)</p>
+          <p className="text-2xl font-black text-amber-600 mt-1">20.54%</p>
+          <p className="text-xs text-slate-500 mt-1">17.54% sobre la PET</p>
+        </div>
+
+        <div className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-rose-500">
+          <p className="text-xs font-bold text-rose-600 uppercase tracking-wider">Tasa de Desempleo (s/ PEA)</p>
+          <p className="text-2xl font-black text-rose-600 mt-1">2.12%</p>
+          <p className="text-xs text-slate-500 mt-1">1.81% sobre la PET</p>
         </div>
       </div>
 
-      <section className="section">
-        <h2>Resumen de indicadores</h2>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Indicador</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {Object.entries(indicadores).map(([key, value]) => (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>
-                  {typeof value === "number" && key !== "Poblacion Expandida"
-                    ? `${value}%`
-                    : value.toLocaleString()}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-
-      <section className="section">
-        <h2>Interpretación principal</h2>
-
-        <div className="card">
-          <p>
-            Los resultados de la ENEMDU 2025 muestran que el principal
-            desafío laboral en Cotopaxi no es únicamente el desempleo
-            abierto, sino la precariedad laboral, reflejada en los
-            niveles de subempleo, empleo no pleno y trabajo no
-            remunerado.
-          </p>
-
-          <p>
-            Por ello, la política pública propuesta se orienta a
-            fortalecer la inserción laboral, la capacitación
-            productiva y los mecanismos locales de comercialización.
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2>Arquitectura multiagente</h2>
-
-        <div className="grid">
-          <div className="card">
-            <h3>Agente coordinador</h3>
-            <p>Prefectura de Cotopaxi</p>
+      {/* 2. Sección del Sistema Multiagente */}
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 space-y-4">
+        <h3 className="font-bold text-slate-800 text-lg border-b pb-2">Sistema Multiagente de Gobernanza</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-100">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+              <h4 className="font-bold text-indigo-900 text-sm">1. Agente Coordinador</h4>
+            </div>
+            <p className="text-xs font-semibold text-indigo-700">Prefectura de Cotopaxi</p>
+            <p className="text-xs text-slate-600 mt-2">
+              Diagnostica microdatos del INEC, lidera la mesa provincial y prioriza los cantones con mayor subempleo.
+            </p>
           </div>
 
-          <div className="card">
-            <h3>Agente productivo</h3>
-            <p>MIPRO</p>
+          <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              <h4 className="font-bold text-blue-900 text-sm">2. Agente Productivo</h4>
+            </div>
+            <p className="text-xs font-semibold text-blue-700">MIPRO / SECAP</p>
+            <p className="text-xs text-slate-600 mt-2">
+              Diseña capacitaciones de reconversión técnica artesanal (calzado, textil y agropromoción).
+            </p>
           </div>
 
-          <div className="card">
-            <h3>Agente de comercialización</h3>
-            <p>GAD Municipales</p>
+          <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <h4 class="font-bold text-emerald-900 text-sm">3. Agente Comercialización</h4>
+            </div>
+            <p className="text-xs font-semibold text-emerald-700">GADs Municipales</p>
+            <p className="text-xs text-slate-600 mt-2">
+              Habilita ferias provinciales, espacios físicos de venta y licencias simplificadas en los 7 cantones.
+            </p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+    </div>
   );
 }
