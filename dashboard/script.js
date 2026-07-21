@@ -14,7 +14,7 @@ async function cargarDatos(){
 
     try{
 
-        const respuesta = await fetch("indicadores.json");
+        const respuesta = await fetch("data/indicadores.json");
 
         datosDashboard = await respuesta.json();
 
