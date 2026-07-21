@@ -2,7 +2,7 @@
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4 md:p-8 max-w-6xl mx-auto font-sans">
       
       {/* Encabezado del Dashboard */}
       <div className="bg-indigo-900 text-white p-6 rounded-xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -74,7 +74,7 @@ export default function DashboardPage() {
           <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-              <h4 class="font-bold text-emerald-900 text-sm">3. Agente Comercialización</h4>
+              <h4 className="font-bold text-emerald-900 text-sm">3. Agente Comercialización</h4>
             </div>
             <p className="text-xs font-semibold text-emerald-700">GADs Municipales</p>
             <p className="text-xs text-slate-600 mt-2">
