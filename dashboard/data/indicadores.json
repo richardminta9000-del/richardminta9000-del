@@ -1,0 +1,93 @@
+{
+    "titulo": "Política Pública para Reducir el Desempleo y Subempleo",
+    "provincia": "Cotopaxi",
+    "fuente": "Microdatos ENEMDU Personas 2025 - INEC",
+
+    "indicadores": {
+
+        "poblacion": 399904,
+
+        "empleoAdecuado": 21.92,
+
+        "subempleoTiempo": 14.27,
+
+        "subempleoIngresos": 3.27,
+
+        "otroEmpleo": 24.73,
+
+        "noRemunerado": 19.11,
+
+        "noClasificado": 0.27,
+
+        "desempleoAbierto": 1.48,
+
+        "desempleoOculto": 0.33,
+
+        "pei": 14.61
+
+    },
+
+    "politica": {
+
+        "nombre": "Programa Provincial de Fortalecimiento Productivo y Empleo Digno",
+
+        "objetivo": "Reducir el desempleo y el subempleo mediante capacitación, fortalecimiento productivo y articulación institucional.",
+
+        "instituciones": [
+
+            "Prefectura de Cotopaxi",
+
+            "Ministerio de Producción (MIPRO)",
+
+            "Gobiernos Autónomos Descentralizados",
+
+            "Universidades",
+
+            "Sector Productivo"
+
+        ],
+
+        "estrategias": [
+
+            "Capacitación técnica",
+
+            "Apoyo al emprendimiento",
+
+            "Fortalecimiento de cadenas productivas",
+
+            "Acceso a mercados",
+
+            "Asistencia técnica permanente"
+
+        ]
+
+    },
+
+    "agentes": [
+
+        {
+
+            "nombre":"Prefectura",
+
+            "rol":"Coordinación general de la política pública."
+
+        },
+
+        {
+
+            "nombre":"MIPRO",
+
+            "rol":"Fortalecimiento productivo y generación de empleo."
+
+        },
+
+        {
+
+            "nombre":"GAD",
+
+            "rol":"Implementación territorial y comercialización."
+
+        }
+
+    ]
+}

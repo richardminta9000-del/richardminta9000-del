@@ -1,0 +1,833 @@
+/* ===================================================
+   DASHBOARD POLÍTICA PÚBLICA
+   ENEMDU PERSONAS 2025
+   Provincia de Cotopaxi
+=================================================== */
+
+:root{
+
+    --azul:#1E3A8A;
+    --azulClaro:#2563EB;
+
+    --verde:#10B981;
+
+    --naranja:#F59E0B;
+
+    --rojo:#EF4444;
+
+    --gris:#F3F4F6;
+
+    --grisOscuro:#374151;
+
+    --blanco:#FFFFFF;
+
+    --sombra:0 15px 35px rgba(0,0,0,.10);
+
+    --radio:18px;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#eef4ff,#f8fbff);
+
+    color:var(--grisOscuro);
+
+}
+
+/*==========================================
+CONTENEDOR PRINCIPAL
+==========================================*/
+
+.container{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/*==========================================
+SIDEBAR
+==========================================*/
+
+.sidebar{
+
+    width:260px;
+
+    background:linear-gradient(180deg,#1E3A8A,#2563EB);
+
+    color:white;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    padding:35px 25px;
+
+    box-shadow:var(--sombra);
+
+}
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.logo h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+}
+
+.logo span{
+
+    display:block;
+
+    margin-top:8px;
+
+    opacity:.8;
+
+    font-size:14px;
+
+}
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.sidebar nav a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    transition:.30s;
+
+    font-size:15px;
+
+}
+
+.sidebar nav a:hover{
+
+    background:rgba(255,255,255,.15);
+
+    transform:translateX(8px);
+
+}
+
+/*==========================================
+CONTENIDO
+==========================================*/
+
+.contenido{
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+    padding:40px;
+
+}
+
+/*==========================================
+HEADER
+==========================================*/
+
+.hero{
+
+    background:linear-gradient(135deg,#2563EB,#1E40AF);
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:45px;
+
+    box-shadow:var(--sombra);
+
+    margin-bottom:35px;
+
+}
+
+.hero h1{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    line-height:1.3;
+
+}
+
+.hero p{
+
+    margin-top:15px;
+
+    font-size:18px;
+
+    opacity:.95;
+
+}
+
+/*==========================================
+TARJETAS KPI
+==========================================*/
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:var(--radio);
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:var(--sombra);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+}
+
+.azul::before{
+
+    background:var(--azul);
+
+}
+
+.verde::before{
+
+    background:var(--verde);
+
+}
+
+.naranja::before{
+
+    background:var(--naranja);
+
+}
+
+.rojo::before{
+
+    background:var(--rojo);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.icono{
+
+    font-size:48px;
+
+    margin-bottom:18px;
+
+}
+
+.card h3{
+
+    font-size:17px;
+
+    color:#555;
+
+}
+
+.card h2{
+
+    font-size:42px;
+
+    margin:15px 0;
+
+    color:#222;
+
+    font-weight:700;
+
+}
+
+.card p{
+
+    color:#777;
+
+    font-size:15px;
+
+}
+/*==========================================
+PANELES
+==========================================*/
+
+.panel{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(8px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+    box-shadow:var(--sombra);
+
+    animation:fadeIn .8s ease;
+
+}
+
+.panel h2{
+
+    color:var(--azul);
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
+}
+
+/*==========================================
+GRID
+==========================================*/
+
+.grid2{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+.gridPolitica{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+/*==========================================
+MINI CARDS
+==========================================*/
+
+.miniCard{
+
+    background:#f8fbff;
+
+    border-left:6px solid var(--azulClaro);
+
+    border-radius:15px;
+
+    padding:25px;
+
+    transition:.30s;
+
+}
+
+.miniCard:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.miniCard h3{
+
+    color:var(--azul);
+
+    margin-bottom:15px;
+
+}
+
+.miniCard ul{
+
+    padding-left:18px;
+
+}
+
+.miniCard li{
+
+    margin:10px 0;
+
+}
+
+/*==========================================
+TABLA
+==========================================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:var(--azul);
+
+    color:white;
+
+}
+
+th{
+
+    padding:15px;
+
+}
+
+td{
+
+    padding:14px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+tbody tr:hover{
+
+    background:#eef6ff;
+
+}
+
+/*==========================================
+AGENTES
+==========================================*/
+
+.agentes{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.agente{
+
+    background:linear-gradient(135deg,#ffffff,#eef6ff);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:var(--sombra);
+
+    transition:.35s;
+
+    text-align:center;
+
+}
+
+.agente:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.agente h3{
+
+    color:var(--azul);
+
+    margin-bottom:18px;
+
+}
+
+/*==========================================
+CONCLUSIONES
+==========================================*/
+
+.conclusiones{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.conclusion{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:var(--sombra);
+
+    border-top:6px solid var(--verde);
+
+}
+
+.conclusion h3{
+
+    color:var(--azul);
+
+    margin-bottom:15px;
+
+}
+
+.conclusion p{
+
+    text-align:justify;
+
+    line-height:1.8;
+
+}
+
+/*==========================================
+TIMELINE
+==========================================*/
+
+.timeline{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.fase{
+
+    background:linear-gradient(180deg,#ffffff,#f3f8ff);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:var(--sombra);
+
+    transition:.30s;
+
+}
+
+.fase:hover{
+
+    transform:scale(1.04);
+
+}
+
+.fase h3{
+
+    color:var(--verde);
+
+    font-size:28px;
+
+}
+
+.fase h4{
+
+    color:var(--azul);
+
+    margin:15px 0;
+
+}
+
+/*==========================================
+ODS
+==========================================*/
+
+.ods{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.odsCard{
+
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:var(--sombra);
+
+}
+
+.odsCard h3{
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+}
+
+/*==========================================
+METODOLOGIA
+==========================================*/
+
+.metodologia{
+
+    padding-left:25px;
+
+}
+
+.metodologia li{
+
+    margin:14px 0;
+
+    line-height:1.7;
+
+}
+
+/*==========================================
+FOOTER
+==========================================*/
+
+footer{
+
+    margin-top:45px;
+
+    background:linear-gradient(135deg,#1E3A8A,#2563EB);
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+footer h3{
+
+    margin-bottom:15px;
+
+    font-size:26px;
+
+}
+
+footer p{
+
+    margin-top:10px;
+
+    opacity:.95;
+
+}
+
+/*==========================================
+GRAFICOS
+==========================================*/
+
+canvas{
+
+    width:100%!important;
+
+    max-height:380px;
+
+}
+
+/*==========================================
+ANIMACIONES
+==========================================*/
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==========================================
+RESPONSIVE
+==========================================*/
+
+@media(max-width:1000px){
+
+.sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    height:auto;
+
+}
+
+.contenido{
+
+    width:100%;
+
+    margin-left:0;
+
+}
+
+.container{
+
+    flex-direction:column;
+
+}
+
+.hero h1{
+
+    font-size:28px;
+
+}
+
+.grid2{
+
+    grid-template-columns:1fr;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:650px){
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.hero{
+
+    padding:25px;
+
+}
+
+.hero h1{
+
+    font-size:24px;
+
+}
+
+.panel{
+
+    padding:20px;
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+.sidebar nav a{
+
+    padding:10px;
+
+}
+
+.card h2{
+
+    font-size:34px;
+
+}
+
+}

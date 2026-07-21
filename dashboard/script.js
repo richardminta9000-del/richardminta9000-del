@@ -1,89 +1,34 @@
-// ======================================
-// Dashboard ENEMDU 2025 - Cotopaxi
-// ======================================
+/*==================================================
+    DASHBOARD POLÍTICA PÚBLICA
+    Provincia de Cotopaxi
+    ENEMDU Personas 2025
+==================================================*/
 
-const rutaJSON = "../data/indicadores.json";
+let datosDashboard = null;
 
-async function cargarIndicadores() {
+/*=========================================
+CARGAR JSON
+=========================================*/
 
-    try {
+async function cargarDatos(){
 
-        const respuesta = await fetch(rutaJSON);
+    try{
 
-        if (!respuesta.ok) {
-            throw new Error("No se pudo leer indicadores.json");
-        }
+        const respuesta = await fetch("indicadores.json");
 
-        const datos = await respuesta.json();
+        datosDashboard = await respuesta.json();
 
-        // -----------------------
-        // Tarjetas
-        // -----------------------
+        cargarKPIs();
 
-        document.getElementById("poblacion").textContent =
-            Number(datos["Poblacion Expandida"]).toLocaleString("es-EC");
+        llenarTabla();
 
-        document.getElementById("empleo").textContent =
-            datos["Empleo Adecuado"] + "%";
+        crearGraficos();
 
-        const subempleo =
-            datos["Subempleo Tiempo"] +
-            datos["Subempleo Ingresos"];
-
-        document.getElementById("subempleo").textContent =
-            subempleo.toFixed(2) + "%";
-
-        const desempleo =
-            datos["Desempleo Abierto"] +
-            datos["Desempleo Oculto"];
-
-        document.getElementById("desempleo").textContent =
-            desempleo.toFixed(2) + "%";
-
-        // -----------------------
-        // Tabla
-        // -----------------------
-
-        const tabla = document.getElementById("tablaIndicadores");
-
-        tabla.innerHTML = "";
-
-        Object.entries(datos).forEach(([nombre, valor]) => {
-
-            const fila = document.createElement("tr");
-
-            const td1 = document.createElement("td");
-            td1.textContent = nombre;
-
-            const td2 = document.createElement("td");
-
-            if (nombre === "Poblacion Expandida") {
-
-                td2.textContent =
-                    Number(valor).toLocaleString("es-EC");
-
-            } else {
-
-                td2.textContent = valor + " %";
-
-            }
-
-            fila.appendChild(td1);
-            fila.appendChild(td2);
-
-            tabla.appendChild(fila);
-
-        });
-
-        // -----------------------
-        // Gráfico
-        // -----------------------
-
-        crearGrafico(datos);
+        generarConclusiones();
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(error);
 
@@ -93,120 +38,312 @@ async function cargarIndicadores() {
 
 }
 
-// ======================================
-// Chart.js
-// ======================================
+/*=========================================
+CARGAR TARJETAS
+=========================================*/
 
-function crearGrafico(datos) {
+function cargarKPIs(){
 
-    const ctx =
-        document.getElementById("grafico");
+    const d = datosDashboard.indicadores;
 
-    new Chart(ctx, {
+    document.getElementById("poblacion").innerHTML =
+        Number(d.poblacion).toLocaleString("es-EC");
 
-        type: "bar",
+    document.getElementById("empleo").innerHTML =
+        d.empleoAdecuado.toFixed(2) + "%";
 
-        data: {
+    document.getElementById("subempleo").innerHTML =
+        (d.subempleoTiempo + d.subempleoIngresos).toFixed(2) + "%";
 
-            labels: [
+    document.getElementById("desempleo").innerHTML =
+        (d.desempleoAbierto + d.desempleoOculto).toFixed(2) + "%";
 
-                "Empleo",
+}
 
-                "Subemp. Tiempo",
+/*=========================================
+TABLA DE INDICADORES
+=========================================*/
 
-                "Subemp. Ingresos",
+function llenarTabla(){
 
-                "Otro No Pleno",
+    const d = datosDashboard.indicadores;
 
-                "No Remunerado",
+    const tabla = document.getElementById("tablaIndicadores");
 
-                "No Clasificado",
+    tabla.innerHTML="";
 
-                "Desemp. Abierto",
+    const indicadores=[
 
-                "Desemp. Oculto",
+        ["Población Expandida",Number(d.poblacion).toLocaleString("es-EC")],
 
-                "PEI"
+        ["Empleo Adecuado",d.empleoAdecuado+" %"],
 
-            ],
+        ["Subempleo por Tiempo",d.subempleoTiempo+" %"],
 
-            datasets: [
+        ["Subempleo por Ingresos",d.subempleoIngresos+" %"],
 
-                {
+        ["Otro Empleo No Pleno",d.otroEmpleo+" %"],
 
-                    label: "Porcentaje",
+        ["No Remunerado",d.noRemunerado+" %"],
 
-                    data: [
+        ["No Clasificado",d.noClasificado+" %"],
 
-                        datos["Empleo Adecuado"],
+        ["Desempleo Abierto",d.desempleoAbierto+" %"],
 
-                        datos["Subempleo Tiempo"],
+        ["Desempleo Oculto",d.desempleoOculto+" %"],
 
-                        datos["Subempleo Ingresos"],
+        ["PEI",d.pei+" %"]
 
-                        datos["Otro Empleo No Pleno"],
+    ];
 
-                        datos["No Remunerado"],
+    indicadores.forEach(fila=>{
 
-                        datos["No Clasificado"],
+        tabla.innerHTML+=`
 
-                        datos["Desempleo Abierto"],
+        <tr>
 
-                        datos["Desempleo Oculto"],
+            <td>${fila[0]}</td>
 
-                        datos["PEI"]
+            <td><strong>${fila[1]}</strong></td>
 
-                    ],
+        </tr>
 
-                    backgroundColor: [
+        `;
 
-                        "#2E8B57",
+    });
 
-                        "#F4A261",
+}
 
-                        "#E9C46A",
+/*=========================================
+DATOS PARA LOS GRÁFICOS
+=========================================*/
 
-                        "#457B9D",
+function obtenerDatosGraficos(){
 
-                        "#6A994E",
+    const d = datosDashboard.indicadores;
 
-                        "#9E9E9E",
+    return{
 
-                        "#D62828",
+        etiquetas:[
 
-                        "#8D0801",
+            "Empleo",
 
-                        "#5C677D"
+            "Subemp. Tiempo",
 
-                    ]
+            "Subemp. Ingresos",
 
-                }
+            "Otro",
 
-            ]
+            "No Rem.",
+
+            "No Clas.",
+
+            "Desemp.",
+
+            "PEI"
+
+        ],
+
+        valores:[
+
+            d.empleoAdecuado,
+
+            d.subempleoTiempo,
+
+            d.subempleoIngresos,
+
+            d.otroEmpleo,
+
+            d.noRemunerado,
+
+            d.noClasificado,
+
+            d.desempleoAbierto+d.desempleoOculto,
+
+            d.pei
+
+        ]
+
+    };
+
+}
+/*=========================================
+CREAR GRÁFICOS
+=========================================*/
+
+function crearGraficos(){
+
+    const datos = obtenerDatosGraficos();
+
+    /*-------------------------------
+        GRÁFICO DE BARRAS
+    -------------------------------*/
+
+    new Chart(document.getElementById("graficoBarras"),{
+
+        type:"bar",
+
+        data:{
+
+            labels:datos.etiquetas,
+
+            datasets:[{
+
+                label:"Porcentaje",
+
+                data:datos.valores,
+
+                backgroundColor:[
+
+                    "#2563EB",
+
+                    "#10B981",
+
+                    "#F59E0B",
+
+                    "#EF4444",
+
+                    "#8B5CF6",
+
+                    "#EC4899",
+
+                    "#DC2626",
+
+                    "#64748B"
+
+                ],
+
+                borderRadius:10
+
+            }]
 
         },
 
-        options: {
+        options:{
 
-            responsive: true,
+            responsive:true,
 
-            plugins: {
+            plugins:{
 
-                legend: {
+                legend:{
 
-                    display: false
+                    display:false
 
                 }
 
             },
 
-            scales: {
+            scales:{
 
-                y: {
+                y:{
 
-                    beginAtZero: true,
+                    beginAtZero:true
 
-                    max: 30
+                }
+
+            }
+
+        }
+
+    });
+
+    /*-------------------------------
+        GRÁFICO DONA
+    -------------------------------*/
+
+    new Chart(document.getElementById("graficoCircular"),{
+
+        type:"doughnut",
+
+        data:{
+
+            labels:datos.etiquetas,
+
+            datasets:[{
+
+                data:datos.valores,
+
+                backgroundColor:[
+
+                    "#2563EB",
+
+                    "#10B981",
+
+                    "#F59E0B",
+
+                    "#EF4444",
+
+                    "#8B5CF6",
+
+                    "#EC4899",
+
+                    "#DC2626",
+
+                    "#64748B"
+
+                ]
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+
+                    position:"bottom"
+
+                }
+
+            }
+
+        }
+
+    });
+
+    /*-------------------------------
+        GRÁFICO RADAR
+    -------------------------------*/
+
+    new Chart(document.getElementById("graficoRadar"),{
+
+        type:"radar",
+
+        data:{
+
+            labels:datos.etiquetas,
+
+            datasets:[{
+
+                label:"Indicadores",
+
+                data:datos.valores,
+
+                fill:true,
+
+                backgroundColor:"rgba(37,99,235,.20)",
+
+                borderColor:"#2563EB",
+
+                pointBackgroundColor:"#2563EB"
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            scales:{
+
+                r:{
+
+                    beginAtZero:true
 
                 }
 
@@ -218,4 +355,48 @@ function crearGrafico(datos) {
 
 }
 
-cargarIndicadores();
+/*=========================================
+CONCLUSIONES AUTOMÁTICAS
+=========================================*/
+
+function generarConclusiones(){
+
+    const d = datosDashboard.indicadores;
+
+    const empleo = d.empleoAdecuado;
+
+    const subempleo = d.subempleoTiempo + d.subempleoIngresos;
+
+    const desempleo = d.desempleoAbierto + d.desempleoOculto;
+
+    let texto1 =
+    `La población expandida analizada alcanza aproximadamente ${Number(d.poblacion).toLocaleString("es-EC")} personas. Los indicadores evidencian que el mercado laboral de Cotopaxi presenta una importante presencia de empleo vulnerable, justificando la necesidad de fortalecer las políticas públicas de empleo.`;
+
+    let texto2 =
+    `El empleo adecuado representa el ${empleo.toFixed(2)}% de la población ocupada. Este porcentaje demuestra que todavía existe una capacidad limitada para generar empleo formal y estable, siendo prioritario fortalecer las actividades productivas y la capacitación técnica.`;
+
+    let texto3 =
+    `El subempleo alcanza el ${subempleo.toFixed(2)}%, resultado de la suma del subempleo por tiempo y por ingresos. Esta situación evidencia problemas estructurales relacionados con productividad, ingresos laborales y acceso a oportunidades económicas.`;
+
+    let texto4 =
+    `Se recomienda implementar una política pública coordinada entre la Prefectura de Cotopaxi, el Ministerio de Producción (MIPRO) y los Gobiernos Autónomos Descentralizados (GAD), orientada al fortalecimiento productivo, capacitación laboral, emprendimiento y comercialización, con el objetivo de incrementar el empleo adecuado y reducir progresivamente el subempleo y el desempleo (${desempleo.toFixed(2)}%).`;
+
+    document.getElementById("conclusion1").innerHTML = texto1;
+
+    document.getElementById("conclusion2").innerHTML = texto2;
+
+    document.getElementById("conclusion3").innerHTML = texto3;
+
+    document.getElementById("conclusion4").innerHTML = texto4;
+
+}
+
+/*=========================================
+INICIAR DASHBOARD
+=========================================*/
+
+window.onload = function(){
+
+    cargarDatos();
+
+};

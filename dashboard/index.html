@@ -2,183 +2,618 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Política Pública | Cotopaxi 2025</title>
+    <title>Dashboard | Política Pública Cotopaxi</title>
 
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<header>
+<div class="container">
 
-    <h1>
-        Diseño de Política Pública para Reducir el Desempleo y Subempleo
-    </h1>
+    <!-- SIDEBAR -->
 
-    <p>
-        Provincia de Cotopaxi · ENEMDU Personas 2025
-    </p>
+    <aside class="sidebar">
 
-</header>
+        <div class="logo">
 
-<main>
+            <h2>COTOPAXI</h2>
 
-    <!-- Tarjetas -->
+            <span>ENEMDU 2025</span>
 
-    <section class="cards">
-
-        <div class="card">
-            <h3>Población Expandida</h3>
-            <span id="poblacion">...</span>
         </div>
 
-        <div class="card">
-            <h3>Empleo Adecuado</h3>
-            <span id="empleo">...</span>
-        </div>
+        <nav>
 
-        <div class="card">
-            <h3>Subempleo</h3>
-            <span id="subempleo">...</span>
-        </div>
+            <a href="#inicio">🏠 Inicio</a>
 
-        <div class="card">
-            <h3>Desempleo</h3>
-            <span id="desempleo">...</span>
-        </div>
+            <a href="#indicadores">📊 Indicadores</a>
 
-    </section>
+            <a href="#graficos">📈 Gráficos</a>
 
+            <a href="#diagnostico">🔎 Diagnóstico</a>
 
-    <!-- Gráfico -->
+            <a href="#politica">🏛 Política</a>
 
-    <section class="panel">
+            <a href="#agentes">🤖 Agentes</a>
 
-        <h2>Distribución de la Condición Laboral</h2>
+            <a href="#conclusiones">✅ Conclusiones</a>
 
-        <canvas id="grafico"></canvas>
+        </nav>
 
-    </section>
+    </aside>
 
+    <!-- CONTENIDO -->
 
-    <!-- Tabla -->
+    <main class="contenido">
 
-    <section class="panel">
+        <!-- ENCABEZADO -->
 
-        <h2>Indicadores Principales</h2>
+        <section id="inicio" class="hero">
 
-        <table>
+            <div>
 
-            <thead>
+                <h1>
 
-                <tr>
+                    Diseño de Política Pública para Reducir el Desempleo y Subempleo
 
-                    <th>Indicador</th>
+                </h1>
 
-                    <th>Valor</th>
+                <p>
 
-                </tr>
+                    Provincia de Cotopaxi · Microdatos ENEMDU Personas 2025
 
-            </thead>
-
-            <tbody id="tablaIndicadores">
-
-            </tbody>
-
-        </table>
-
-    </section>
-
-
-    <!-- Política -->
-
-    <section class="panel">
-
-        <h2>Propuesta de Política Pública</h2>
-
-        <p>
-
-            Diseñar una política pública provincial orientada a reducir
-            el desempleo y el subempleo mediante el fortalecimiento de
-            capacidades productivas, apoyo a emprendimientos, capacitación
-            laboral y articulación institucional entre la Prefectura de
-            Cotopaxi, el Ministerio de Producción (MIPRO) y los Gobiernos
-            Autónomos Descentralizados.
-
-        </p>
-
-    </section>
-
-
-    <!-- Arquitectura -->
-
-    <section class="panel">
-
-        <h2>Arquitectura Multiagente</h2>
-
-        <div class="agentes">
-
-            <div class="agente">
-
-                <h3>Agente Coordinador</h3>
-
-                <p>Prefectura de Cotopaxi</p>
+                </p>
 
             </div>
 
-            <div class="agente">
+        </section>
 
-                <h3>Agente Productivo</h3>
+        <!-- TARJETAS -->
 
-                <p>MIPRO</p>
+        <section id="indicadores" class="cards">
+
+            <div class="card azul">
+
+                <div class="icono">👥</div>
+
+                <h3>Población</h3>
+
+                <h2 id="poblacion">0</h2>
+
+                <p>Población expandida</p>
 
             </div>
 
-            <div class="agente">
+            <div class="card verde">
 
-                <h3>Agente Comercial</h3>
+                <div class="icono">💼</div>
 
-                <p>GAD Municipales</p>
+                <h3>Empleo Adecuado</h3>
+
+                <h2 id="empleo">0%</h2>
+
+                <p>Empleo pleno</p>
 
             </div>
 
-        </div>
+            <div class="card naranja">
 
-    </section>
+                <div class="icono">📉</div>
 
+                <h3>Subempleo</h3>
 
-    <!-- Conclusión -->
+                <h2 id="subempleo">0%</h2>
 
-    <section class="panel">
+                <p>Tiempo + Ingresos</p>
 
-        <h2>Conclusión</h2>
+            </div>
 
-        <p>
+            <div class="card rojo">
 
-            Los resultados obtenidos mediante los microdatos de la ENEMDU
-            Personas 2025 evidencian la necesidad de fortalecer políticas
-            públicas orientadas al empleo adecuado, promoviendo acciones
-            coordinadas entre instituciones públicas para mejorar las
-            oportunidades laborales de la población de Cotopaxi.
+                <div class="icono">⚠</div>
 
-        </p>
+                <h3>Desempleo</h3>
 
-    </section>
+                <h2 id="desempleo">0%</h2>
 
-</main>
+                <p>Abierto + Oculto</p>
 
-<footer>
+            </div>
 
-    Proyecto Integrador Final · Política Pública · ENEMDU 2025
+        </section>
 
-</footer>
+        <!-- GRAFICOS -->
+
+        <section id="graficos" class="grid2">
+
+            <div class="panel">
+
+                <h2>Condición Laboral</h2>
+
+                <canvas id="graficoBarras"></canvas>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>Distribución General</h2>
+
+                <canvas id="graficoCircular"></canvas>
+
+            </div>
+
+        </section>
+
+        <section class="grid2">
+
+            <div class="panel">
+
+                <h2>Comparación General</h2>
+
+                <canvas id="graficoRadar"></canvas>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>Resumen Estadístico</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Indicador</th>
+
+                            <th>Valor</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaIndicadores">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- DIAGNOSTICO -->
+
+        <section id="diagnostico" class="panel">
+
+            <h2>Diagnóstico del Problema Público</h2>
+
+            <p>
+
+                El análisis de los microdatos de la ENEMDU Personas 2025 evidencia
+                que una parte importante de la población económicamente activa de la
+                provincia de Cotopaxi presenta dificultades para acceder a un empleo
+                adecuado. Aunque existe participación laboral, predominan formas de
+                ocupación caracterizadas por ingresos insuficientes, jornadas
+                inadecuadas y limitada estabilidad laboral.
+
+            </p>
+
+            <p>
+
+                El subempleo constituye uno de los principales desafíos para la
+                provincia, reflejando una utilización ineficiente del capital humano
+                y limitando el desarrollo económico territorial. Esto reduce la
+                productividad, incrementa la vulnerabilidad social y dificulta la
+                movilidad económica de los hogares.
+
+            </p>
+
+        </section>
+
+        <!-- POLITICA -->
+
+        <section id="politica" class="panel">
+
+            <h2>Política Pública Propuesta</h2>
+
+            <div class="gridPolitica">
+
+                <div class="miniCard">
+
+                    <h3>Objetivo General</h3>
+
+                    <p>
+
+                        Reducir el desempleo y el subempleo mediante estrategias de
+                        fortalecimiento productivo, capacitación laboral y generación
+                        de oportunidades económicas sostenibles.
+
+                    </p>
+
+                </div>
+
+                <div class="miniCard">
+
+                    <h3>Población Objetivo</h3>
+
+                    <p>
+
+                        Personas mayores o iguales a 15 años pertenecientes a la
+                        población económicamente activa de la provincia de Cotopaxi.
+
+                    </p>
+
+                </div>
+
+                <div class="miniCard">
+
+                    <h3>Estrategias</h3>
+
+                    <ul>
+
+                        <li>Capacitación técnica.</li>
+
+                        <li>Impulso al emprendimiento.</li>
+
+                        <li>Asistencia productiva.</li>
+
+                        <li>Acceso a mercados.</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="miniCard">
+
+                    <h3>Resultados Esperados</h3>
+
+                    <ul>
+
+                        <li>Mayor empleo adecuado.</li>
+
+                        <li>Menor subempleo.</li>
+
+                        <li>Incremento de ingresos.</li>
+
+                        <li>Fortalecimiento económico provincial.</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- AGENTES -->
+
+        <section id="agentes" class="panel">
+
+            <h2>Arquitectura Multiagente</h2>
+
+            <div class="agentes">
+
+                <div class="agente">
+
+                    <h3>🏛 Prefectura</h3>
+
+                    <p>
+
+                        Coordina la ejecución de la política pública, realiza el
+                        seguimiento institucional y evalúa los resultados obtenidos.
+
+                    </p>
+
+                </div>
+
+                <div class="agente">
+
+                    <h3>🏭 MIPRO</h3>
+
+                    <p>
+
+                        Promueve programas de fortalecimiento productivo,
+                        emprendimiento, innovación y generación de empleo.
+
+                    </p>
+
+                </div>
+
+                <div class="agente">
+
+                    <h3>🏘 GAD Municipales</h3>
+
+                    <p>
+
+                        Ejecutan acciones territoriales, identifican beneficiarios y
+                        articulan procesos de comercialización local.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+                <!-- CONCLUSIONES -->
+
+        <section id="conclusiones" class="panel">
+
+            <h2>Conclusiones y Recomendaciones</h2>
+
+            <div class="conclusiones">
+
+                <div class="conclusion">
+
+                    <h3>📊 Diagnóstico General</h3>
+
+                    <p id="conclusion1">
+
+                        A partir del procesamiento de los microdatos de la ENEMDU
+                        Personas 2025 se evidencia que la estructura laboral de la
+                        provincia presenta limitaciones importantes para generar
+                        empleo adecuado. Los indicadores muestran una elevada
+                        participación de modalidades laborales precarias, lo que
+                        justifica la intervención mediante una política pública
+                        orientada al fortalecimiento del empleo productivo.
+
+                    </p>
+
+                </div>
+
+                <div class="conclusion">
+
+                    <h3>💼 Empleo Adecuado</h3>
+
+                    <p id="conclusion2">
+
+                        El empleo adecuado constituye uno de los principales
+                        indicadores del bienestar económico. Un incremento de este
+                        indicador permitirá mejorar los ingresos familiares,
+                        fortalecer la productividad provincial y reducir la pobreza
+                        laboral.
+
+                    </p>
+
+                </div>
+
+                <div class="conclusion">
+
+                    <h3>📉 Subempleo</h3>
+
+                    <p id="conclusion3">
+
+                        La existencia de subempleo refleja una utilización
+                        insuficiente de las capacidades productivas de la población.
+                        Esto requiere programas permanentes de capacitación,
+                        innovación y asistencia técnica para facilitar la transición
+                        hacia empleos de mayor calidad.
+
+                    </p>
+
+                </div>
+
+                <div class="conclusion">
+
+                    <h3>🏛 Política Pública Recomendada</h3>
+
+                    <p id="conclusion4">
+
+                        Se propone implementar una política pública provincial basada
+                        en cuatro ejes estratégicos: fortalecimiento productivo,
+                        capacitación laboral, apoyo al emprendimiento y generación
+                        de mercados para pequeños productores. La coordinación entre
+                        Prefectura, MIPRO y GAD permitirá optimizar recursos,
+                        incrementar oportunidades laborales y mejorar la calidad del
+                        empleo.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PLAN DE IMPLEMENTACIÓN -->
+
+        <section class="panel">
+
+            <h2>Plan Simplificado de Implementación</h2>
+
+            <div class="timeline">
+
+                <div class="fase">
+
+                    <h3>Fase 1</h3>
+
+                    <h4>Diagnóstico</h4>
+
+                    <p>
+
+                        Identificación de sectores con mayor desempleo y subempleo
+                        utilizando la información estadística de la ENEMDU.
+
+                    </p>
+
+                </div>
+
+                <div class="fase">
+
+                    <h3>Fase 2</h3>
+
+                    <h4>Capacitación</h4>
+
+                    <p>
+
+                        Formación técnica para jóvenes, mujeres y población en edad
+                        productiva mediante programas coordinados con instituciones
+                        públicas.
+
+                    </p>
+
+                </div>
+
+                <div class="fase">
+
+                    <h3>Fase 3</h3>
+
+                    <h4>Impulso Productivo</h4>
+
+                    <p>
+
+                        Financiamiento, asistencia técnica y fortalecimiento de
+                        emprendimientos con potencial de crecimiento económico.
+
+                    </p>
+
+                </div>
+
+                <div class="fase">
+
+                    <h3>Fase 4</h3>
+
+                    <h4>Seguimiento</h4>
+
+                    <p>
+
+                        Monitoreo permanente mediante indicadores laborales para
+                        evaluar la efectividad de la política pública.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ODS -->
+
+        <section class="panel">
+
+            <h2>Objetivos de Desarrollo Sostenible</h2>
+
+            <div class="ods">
+
+                <div class="odsCard">
+
+                    <h3>ODS 8</h3>
+
+                    <p>
+
+                        Trabajo Decente y Crecimiento Económico.
+
+                    </p>
+
+                </div>
+
+                <div class="odsCard">
+
+                    <h3>ODS 1</h3>
+
+                    <p>
+
+                        Fin de la Pobreza mediante mejores oportunidades laborales.
+
+                    </p>
+
+                </div>
+
+                <div class="odsCard">
+
+                    <h3>ODS 10</h3>
+
+                    <p>
+
+                        Reducción de las desigualdades económicas y sociales.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- METODOLOGÍA -->
+
+        <section class="panel">
+
+            <h2>Metodología del Proyecto</h2>
+
+            <ul class="metodologia">
+
+                <li>Fuente de datos: Microdatos ENEMDU Personas 2025 (INEC).</li>
+
+                <li>Población de estudio: Personas de 15 años o más de la provincia de Cotopaxi.</li>
+
+                <li>Procesamiento estadístico mediante Python y Pandas.</li>
+
+                <li>Aplicación del factor de expansión oficial del INEC.</li>
+
+                <li>Visualización mediante HTML, CSS, JavaScript y Chart.js.</li>
+
+                <li>Despliegue del dashboard mediante Vercel.</li>
+
+            </ul>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <h3>
+
+                Proyecto Integrador Final
+
+            </h3>
+
+            <p>
+
+                Diseño de una Política Pública orientada a reducir el desempleo y
+                subempleo en la provincia de Cotopaxi.
+
+            </p>
+
+            <p>
+
+                Fuente: Microdatos ENEMDU Personas 2025 · Instituto Nacional de
+                Estadística y Censos (INEC).
+
+            </p>
+
+            <p>
+
+                Dashboard desarrollado en HTML, CSS y JavaScript.
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
